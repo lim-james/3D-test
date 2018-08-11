@@ -4,6 +4,8 @@
 #include "Framework\timer.h"
 #include "Object.h"
 
+#define MAZE_SIZE 10
+
 extern CStopWatch g_swTimer;
 extern bool g_bQuitGame;
 
@@ -46,6 +48,7 @@ void shutdown    ( void );      // do clean up, free memory
 
 void initCamera();
 void initObject();
+void initGrid();		// initialise grid array before	
 //void initPlayer();
 
 void splashScreenWait();					// waits for time to pass in splash screen
@@ -63,5 +66,8 @@ void renderObject(Object*);					// renders the object into the buffer
 void renderObjects(const unsigned int, Object**);		// renders the object into the buffer
 void renderLine(Vector*, Vector*, WORD);	// renders a line betweeen two points
 void renderPoint(double, double, WORD);		// renders a point onto cartesian plane
+
+void generateGrid();		// generate the contents of grid
+void visit(int, int);
 
 #endif // _GAME_H

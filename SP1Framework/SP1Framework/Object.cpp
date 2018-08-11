@@ -12,8 +12,7 @@ Object::Object(const unsigned int count, Vector* v) : verticesCount(count) {
 }
 
 Object::Object(std::string file) {
-	std::ifstream ifs;
-	ifs.open(file);
+	std::ifstream ifs(file);
 	int dimensions = 0;
 	ifs >> dimensions;
 	ifs >> this->verticesCount;
@@ -34,6 +33,7 @@ Object::Object(std::string file) {
 				break;
 		}
 	}
+	ifs.close();
 }
 
 Object::~Object() {

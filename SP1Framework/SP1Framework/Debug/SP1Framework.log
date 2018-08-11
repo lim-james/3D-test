@@ -1,13 +1,10 @@
 ﻿  game.cpp
 c:\users\james\documents\nyp\studio project\3d_test\sp1framework\sp1framework\game.cpp(39): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\james\documents\nyp\studio project\3d_test\sp1framework\sp1framework\game.cpp(333): warning C4018: '<': signed/unsigned mismatch
-c:\users\james\documents\nyp\studio project\3d_test\sp1framework\sp1framework\game.cpp(362): warning C4018: '<': signed/unsigned mismatch
-c:\users\james\documents\nyp\studio project\3d_test\sp1framework\sp1framework\game.cpp(390): warning C4244: '=': conversion from 'double' to 'SHORT', possible loss of data
-c:\users\james\documents\nyp\studio project\3d_test\sp1framework\sp1framework\game.cpp(391): warning C4244: '=': conversion from 'double' to 'SHORT', possible loss of data
+c:\users\james\documents\nyp\studio project\3d_test\sp1framework\sp1framework\game.cpp(329): warning C4018: '<': signed/unsigned mismatch
+c:\users\james\documents\nyp\studio project\3d_test\sp1framework\sp1framework\game.cpp(358): warning C4018: '<': signed/unsigned mismatch
+c:\users\james\documents\nyp\studio project\3d_test\sp1framework\sp1framework\game.cpp(386): warning C4244: '=': conversion from 'double' to 'SHORT', possible loss of data
+c:\users\james\documents\nyp\studio project\3d_test\sp1framework\sp1framework\game.cpp(387): warning C4244: '=': conversion from 'double' to 'SHORT', possible loss of data
+c:\users\james\documents\nyp\studio project\3d_test\sp1framework\sp1framework\game.cpp(393): warning C4309: '=': truncation of constant value
+c:\users\james\documents\nyp\studio project\3d_test\sp1framework\sp1framework\game.cpp(395): warning C4309: '=': truncation of constant value
 c:\users\james\documents\nyp\studio project\3d_test\sp1framework\sp1framework\game.cpp(397): warning C4309: '=': truncation of constant value
-c:\users\james\documents\nyp\studio project\3d_test\sp1framework\sp1framework\game.cpp(399): warning C4309: '=': truncation of constant value
-c:\users\james\documents\nyp\studio project\3d_test\sp1framework\sp1framework\game.cpp(401): warning C4309: '=': truncation of constant value
-c:\users\james\documents\nyp\studio project\3d_test\sp1framework\sp1framework\game.cpp(452): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  main.cpp
-  Generating Code...
   SP1Framework.vcxproj -> C:\Users\james\Documents\NYP\Studio Project\3D_test\SP1Framework\Debug\SP1Framework.exe

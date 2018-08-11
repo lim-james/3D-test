@@ -23,9 +23,9 @@ unsigned int numberOfObjects = 0;
 Object **objects;
 //Object *player;
 
-Matrix *camera;
+Matrix *camera = new Matrix(4, 4);
 
-bool grid[MAZE_SIZE][MAZE_SIZE];
+Grid grid = Grid("Room.txt");
 
 //--------------------------------------------------------------
 // Purpose  : Initialisation function
@@ -50,10 +50,6 @@ void init( void )
     g_sChar.m_bActive = true;
     // sets the width, height and the font name to use in the console
     g_Console.setConsoleFont(0, 5, L"Consolas");
-
-	initCamera();
-	initGrid();
-	generateGrid();
 
 	initObject();
 	//initPlayer();
@@ -393,34 +389,29 @@ void renderPoint(double x, double y, WORD color)
 		c.Y >= 0 && c.Y <= g_Console.getConsoleSize().Y) {
 		double d = sqrt(pow(x, 2) + pow(y, 2));
 		char icon = ' ';
-		if (d < 50)
+		if (d < 25)
 			icon = 178;
-		else if (d < 65)
+		else if (d < 40)
 			icon = 177;
-		else if (d < 75)
+		else if (d < 45)
 			icon = 176;
 		g_Console.writeToBuffer(c, icon, color);
 	}
 }
 
-void initCamera()
-{
-	camera = new Matrix(4, 4);
-}
-
 void initObject()
 {
-	for (int r = 0; r < MAZE_SIZE; ++r)
-		for (int c = 0; c < MAZE_SIZE; ++c)
-			if (grid[r][c])
+	for (int r = 0; r < grid.size.X; ++r)
+		for (int c = 0; c < grid.size.Y; ++c)
+			if (grid.nodes[r][c].attribute)
 				numberOfObjects++;
 	objects = new Object*[numberOfObjects];
 	int i = 0;
-	for (int r = 0; r < MAZE_SIZE; ++r) {
-		for (int c = 0; c < MAZE_SIZE; ++c) {
-			if (grid[r][c]) {
+	for (int r = 0; r < grid.size.X; ++r) {
+		for (int c = 0; c < grid.size.Y; ++c) {
+			if (grid.nodes[r][c].attribute) {
 				objects[i] = new Object("Cube.txt");
-				objects[i]->color = 0x0F;
+				objects[i]->color = grid.nodes[r][c].attribute;
 				objects[i]->translate(-2 * c, x);
 				objects[i]->translate(-2 * r, y);
 				objects[i]->translate(-2, z);
@@ -441,60 +432,3 @@ void initPlayer()
 	player->scale(5);
 }
 */
-
-void initGrid() {
-	for (int r = 0; r < MAZE_SIZE; ++r)
-		for (int c = 0; c < MAZE_SIZE; ++c)
-			grid[r][c] = true;
-}
-
-void generateGrid() {
-	srand(time(NULL));
-	visit(1, 1);
-}
-
-// This is the recursive function we will code in the next project
-void visit(int x, int y) {
-	// Starting at the given index, recursively visits every direction in a 
-	// randomized order.
-	// Set my current location to be an empty passage.
-	grid[y][x] = false;
-	// Create an local array containing the 4 directions and shuffle their order.
-	int dirs[4];
-	dirs[0] = 0;
-	dirs[1] = 1;
-	dirs[2] = 2;
-	dirs[3] = 3;
-	for (int i = 0; i < 4; ++i) {
-		int r = rand() & 3;
-		int temp = dirs[r];
-		dirs[r] = dirs[i];
-		dirs[i] = temp;
-	}
-
-	// Loop through every direction and attempt to Visit that direction.
-	for (int i = 0; i < 4; ++i) {
-		// dx,dy are offsets from current location.  Set them based
-		// on the next direction I wish to try.
-		int dx = 0, dy = 0;
-		switch (dirs[i]) {
-			case 0: dy = -1; break;
-			case 1: dy = 1; break;
-			case 2: dx = 1; break;
-			case 3: dx = -1; break;
-		}
-		// Find the (x,y) coordinates of the grid cell 2 spots
-		// away in the given direction.
-		int x2 = x + (dx << 1);
-		int y2 = y + (dy << 1);
-		if (x2 > 0 && x2 < MAZE_SIZE - 1 && y2 > 0 && y2 < MAZE_SIZE - 1) {
-			if (grid[y2][x2]) {
-				// (x2,y2) has not been visited yet...knock down the
-				// wall between my current position and that position
-				grid[y2 - dy][x2 - dx] = false;
-				// Recursively Visit (x2,y2)
-				visit(x2, y2);
-			}
-		}
-	}
-}
